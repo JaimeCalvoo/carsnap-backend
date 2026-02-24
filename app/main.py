@@ -1,6 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from app.recognition import detect_car_make_model
-from app.matching import find_best_match
+from app.matching import best_match
+from data.cars import CARS_DB
 
 app = FastAPI(title="CarSnap Backend")
 
@@ -13,7 +14,8 @@ async def scan_car(image: UploadFile = File(...)):
     image_bytes = await image.read()
 
     detected = await detect_car_make_model(image_bytes)
-    car, match_score = find_best_match(detected["make"], detected["model"])
+    key, match_score = best_match(detected["make"], detected["model"], CARS_DB)
+    car = CARS_DB.get(key)
 
     return {
         "detected": detected,
