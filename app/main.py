@@ -20,4 +20,3 @@ async def scan_car(image: UploadFile = File(...)):
         "match_score": match_score,
         "car": car,
     }
-    
