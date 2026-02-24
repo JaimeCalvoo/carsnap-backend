@@ -1,8 +1,7 @@
 from fastapi import FastAPI, UploadFile, File
 from app.recognition import detect_car_make_model
 from app.matching import best_match
-from data.cars import CARS_DB
-
+from data.cars import cars
 app = FastAPI(title="CarSnap Backend")
 
 @app.get("/")
