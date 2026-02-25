@@ -1,3 +1,4 @@
+from data.cars import cars as CARS_DB
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
